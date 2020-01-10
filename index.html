@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>GIF Search App</title>
+  <title>GIF-Tastic: GIF Search App</title>
 
   <!-- linke to styles-->
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -22,7 +22,11 @@
 </head>
 <body>
   <div class="container">
-    <h1>GIF Search</h1>
+    <!-- required GIPHY attribution-->
+    <img style=float:right; src="assets/images/PoweredBy_200px-White_HorizLogo.png" alt="Powered by GIPHY"></img>
+    <h1 style="margin:0;padding:0;float:left;">GIF Search</h1>
+    <p class="directions">Click a button below to search for GIFs related to the topic on the button.</p>
+    <p class="directions">(Right-click a topic button to remove it.)</p>
 
      <!-- Rendered Buttons will get Dumped Here  -->
     <div id="buttons-view" style="border:2px solid blue;">
@@ -33,20 +37,39 @@
       <label for="gif-input">Type a GIF search topic:</label>
       <input type="text" id="gif-input"><br>
 
-      <!-- Button triggers new movie to be added -->
+      <!-- Button adds a new search topic button added -->
       <input id="add-gif" type="submit" value="Click to create new search topic button">
+      <br>  <!--- open up some vertical space-->
+      <br>
+      <label for="rating">Select the rating of GIFs to search for:</label>
+      <select id="rating">
+        <option value="G">G</option>
+        <option value="any">Any</option>
+        <option value="R">R</option>
+        <option value="PG-13">PG-13</option>
+      </select>
+      <br>  <!--- open up some vertical space-->
+      <br>
+      <label for="limit">Select number of GIFs returned by the search:</label>
+      <select id="limit">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+      </select>
+
     </form>
 
     <!-- div to hold search results-->
-  <div id="results" style="width:100%;border:2px solid blue;padding:5px;">
     <h3 >Search results</h3>
-    <p class="directions">Double-click a GIF to add it to your favorites.</p>
+    <p class="directions">(Double-click a GIF to add it to your favorites.)</p>
+  <div id="results" style="width:100%;border:2px solid blue;padding:5px;">
   </div>
 
   <!-- div to hold Favorites -->
+  <h3>Favorite GIFS</h3>
+  <p class="directions">(Double-click a GIF to remove it from favorites.)</p>
   <div id="faves" style="width:100%;border:2px solid green;">
-    <h3>Favorite GIFS</h3>
-    <p class="directions">Double-click a GIF to remove it from favorites.</p>
   </div>
 </body>
 </html>
