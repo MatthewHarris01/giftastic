@@ -10,4 +10,4 @@ NEXT TO DO: 1) implent code to make ajax call to GIPHY  API, and display results
 5) implement doubl-click on a gif image to add it to favorites.
 6) implement double-click on a favorite gif to remove it from favorites
 7) implement right-click to delete a topic button and its associated local storage key.
-7) implement code to delete all local storage entries for favorites and topics, since those get re-written in the course of the app's operation.
+8) implement code to delete all local storage entries for favorites and topics, since those get re-written in the course of the app's operation.
