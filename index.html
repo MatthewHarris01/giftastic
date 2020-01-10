@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>GIF Search App</title>
+
+  <!-- linke to styles-->
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+  <!-- link to the jQuery Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+     <!-- add local JS file link-->
+     <script type="text/javascript" src="assets/javascript/app.js"></script>
+ 
+
+  <!-- Favicon link -->
+  <link rel="icon" href="MHfavicon.ico" type="image/ico">
+
+</head>
+<body>
+  <div class="container">
+    <h1>GIF Search</h1>
+
+     <!-- Rendered Buttons will get Dumped Here  -->
+    <div id="buttons-view" style="border:2px solid blue;">
+      <p class="directions">right-click a button to delete it from this list</p>
+    </div> <!--end of buttons div-->
+
+    <form id="gif-form">
+      <label for="gif-input">Type a GIF search topic:</label>
+      <input type="text" id="gif-input"><br>
+
+      <!-- Button triggers new movie to be added -->
+      <input id="add-gif" type="submit" value="Click to create new search topic button">
+    </form>
+
+    <!-- div to hold search results-->
+  <div id="results" style="width:100%;border:2px solid blue;padding:5px;">
+    <h3 >Search results</h3>
+    <p class="directions">Double-click a GIF to add it to your favorites.</p>
+  </div>
+
+  <!-- div to hold Favorites -->
+  <div id="faves" style="width:100%;border:2px solid green;">
+    <h3>Favorite GIFS</h3>
+    <p class="directions">Double-click a GIF to remove it from favorites.</p>
+  </div>
+</body>
+</html>

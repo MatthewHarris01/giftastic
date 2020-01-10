@@ -1,0 +1,26 @@
+/* styles for GIFTastic Gif search app 1/9/2020 */
+
+body {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  background-image: url('../images/concrete_seamless.png');
+  margin:0;
+  padding:0;
+}
+
+h3 {
+  margin-bottom:0;
+  padding-top:0;
+}
+
+p.directions {
+  margin:0;
+  padding:0;
+}
+
+button.topic-btn {
+  background-color: goldenrod;
+  margin-left:15px;
+  margin-right:15px;
+  margin-top:10px;
+  margin-bottom:10px;
+}
