@@ -4,7 +4,7 @@ body {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   background-image: url('../images/concrete_seamless.png');
   margin:0;
-  padding:0;
+  padding:5px;
 }
 
 h3 {
@@ -23,4 +23,23 @@ button.topic-btn {
   margin-right:15px;
   margin-top:10px;
   margin-bottom:10px;
+}
+
+p.gifinfo {
+  font-family: 'Courier New', Courier, monospace;
+  font-size:10pt;
+  margin:0;
+  padding:0;
+}
+
+div.gifresult {
+  border:2px solid green;
+  margin:0;
+  padding:0;
+}
+
+img.gif-result {
+  border:1px solid yellow;
+
+
 }
