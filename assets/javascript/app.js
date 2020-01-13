@@ -408,7 +408,54 @@ $(document).on("dblclick", ".gifresult",  function(event) {
     console.log(gifdiv)
 
 } //end of doubleclick event function for rresult gif
-) //end of doubleclick event listeneer for reseult gif
+) //end of doubleclick event listener for reseult gif
+
+
+//*********************************************************************************
+// RESULT IMAGE CLICK
+//*********************************************************************************
+$(document).on("click", ".gif-result",  function(event) {
+  // $(".gifresult").on("click", function () {
+
+    console.log("RESULT img CLICKED --TURN ANIMATION ON");
+
+    var gifimg = $(this);
+
+    console.log("prove that I now have a handle on the right IMAGE")
+
+    console.log(gifimg);
+
+    console.log("image ID: " + $(this).attr("id"));
+
+    var imgState = $(this).attr("data-state");
+
+    console.log("image data-state: " + imgState);
+
+    if (imgState == "still") {
+      //change data-state attribute
+      $(this).attr("data-state", "anim");
+      //now use data-url-anim attribute to set the src attribute
+      var temp = $(this).attr("data-url-anim");
+      console.log("ANIMATED URL IS: " + temp);
+      $(this).attr("src", temp);
+
+      console.log("GIF SHOULD NOW BE  ANIMATED")
+    }
+    else {
+      //set the data-state back to still
+      $(this).attr("data-state", "still");
+      //use the data-url-still attribute to set the src attribut
+      var temp = $(this).attr("data-url-still");
+      console.log("STILL URL IS: " + temp);
+      $(this).attr("src", temp);
+
+      console.log("GIF SHOULD NOW BE  STILL");
+    }
+
+
+
+} //end of Click event function for result gif
+) //end of click event listener for resesult gif
 
 console.log("end of document ready function");
 } //end of document ready function 

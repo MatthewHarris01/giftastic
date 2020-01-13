@@ -7,7 +7,7 @@
   <title>GIF-Tastic: GIF Search App</title>
 
   <!-- linke to styles-->
-  <link rel="stylesheet" type="text/css" href="assets/css/style2.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
   <!-- link to the jQuery Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -34,14 +34,14 @@
     </div> <!--end of buttons div-->
 
     <form id="gif-form">
-      <label for="gif-input" style="color:red;font-weight:bold;">Type a GIF search topic, then click the button below to create a new search topic button:</label>
+      <label for="gif-input" style="color:orangered;font-weight:bold;">Type a GIF search topic, then click the button below to create a new search topic button:</label>
       <input type="text" id="gif-input"><br>
 
       <!-- Button adds a new search topic button added -->
       <input id="add-gif" type="submit" style="font-weight:bold; background-color:goldenrod;" value="Click to create new search topic button">
       <br>  <!--- open up some vertical space-->
       <br>
-      <label for="rating" style="font-weight:bold;color:goldenrod;">Select the rating of GIFs to search for:</label>
+      <label for="rating" style="font-weight:bold;color:orangered;">Select the rating of GIFs to search for:</label>
       <select id="rating">
         <option value="G">G</option>
         <option value="any">Any</option>
@@ -50,7 +50,7 @@
       </select>
       <br>  <!--- open up some vertical space-->
       <br>
-      <label for="limit" style="font-weight:bold;color:goldenrod;">Select number of GIFs returned by the search:</label>
+      <label for="limit" style="font-weight:bold;color:orangered;">Select number of GIFs returned by the search:</label>
       <select id="limit">
         <option value="5">5</option>
         <option value="10">10</option>
@@ -64,7 +64,7 @@
     <h3 >Search results</h3>
     <p class="directions">(Double-click a GIF to add it to your favorites.)</p>
     <p class="directions">(Click a GIF to start or stop animation.)</p>
-    <button id="clearresults">Clear Search results</button>
+    <button id="clearresults" style="background-color: coral;margin-bottom:10px;">Clear Search results</button>
   <div id="imgresults" style="width:100%;border:2px solid blue;padding:5px;">
     
   </div>
