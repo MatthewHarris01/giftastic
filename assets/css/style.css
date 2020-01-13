@@ -1,4 +1,4 @@
-/* styles for GIFTastic Gif search app 1/9/2020 */
+/* styles for GIFTastic Gif search app 1/12//2020 */
 
 body {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
@@ -13,8 +13,13 @@ h3 {
 }
 
 p.directions {
-  margin:0;
+  font-family:'Times New Roman', Times, serif;
+  font-size:12 pt;
+  font-style:italic;
+  font-weight:bold;
+  color:red;  
   padding:0;
+  margin:1px; /* for some strange reason, setting this margin to zero adversely affects the way the topic buttons render!! */
 }
 
 button.topic-btn {
@@ -27,13 +32,15 @@ button.topic-btn {
 
 p.gifinfo {
   font-family: 'Courier New', Courier, monospace;
-  font-size:10pt;
+  font-size:11pt;
+  font-weight:bold;
+  font-style:italic;
   margin:0;
   padding:0;
 }
 
 div.gifresult {
-  border:2px solid green;
+  border:2px solid blue;
   margin:0;
   padding:0;
 }

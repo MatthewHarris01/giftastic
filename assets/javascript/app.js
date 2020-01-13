@@ -1,41 +1,10 @@
 // Java Script for GIFTatic app, started 1/7 1O:59 pm
 
-var defaultgiftopics = ["cat", "dog", "ostrich"]; //default topics if there are none in local storage
+var defaultgiftopics = ["cat", "dog", "hamster"]; //default topics if there are none in local storage
 var topiclist = []; //list of topics if created from local storage, or as added to by user.
 var favelist = [];  //list of urls marked as favorites  and retrieved from local storage.
 var newTopic = "";  //to hold new topic before it is added to topiclist array.
 
-//*********************************************************************************
-// RENDER IMAGE
-//*******************************************************************************
-function renderImage(url,alt,classname, num) {
-  //this function is an experiment to see if using a distinct function to add an image tag to the results dive works
-  //better than doing it in the loop that processes all the images -- for some reason, only the last image rendered in the 
-  //loop appears in the results div, which seems very odd -- and also, it only appears if ther is already (even if empty) and image tag
-  //somewhere on the page. I really don't get why this hasn't been working. The other thing is that my the new image my code is supposedly adding takes the place of any existing image tag on the page -- like the GIPHY  attribution image.!!!!
-  //weird shit, man.
-  var rsltimg;
-  console.log("inside render image function")
-
-  console.log("image url: " + url)
-  console.log("image alt: " + alt);
-  console.log("image class name: " + classname);
-  console.log("image number: " + num);
-    rsltimg = $("<img>");
-    rsltimg.addClass(classname);
-    rsltimg.attr("src", url);
-    rsltimg.attr("alt", alt);
-    rsltimg.attr("alt", "image " + num);
-    rsltimg.attr("data-name", num);
-
-console.log("appending image");
-    $("#imgresults").append(rsltimg);
-
-    // $("#imgresults").append(url);
-    // var img = $("<img>");
-
-    console.log("end of render image function");
-}
 
 
 //*********************************************************************************
@@ -52,18 +21,23 @@ console.log("appending image");
     // (this is necessary otherwise you will have repeat buttons)
     $("#buttons-view").empty();
 
-    // console.log("BUTTON TO ADD: [" + newbtn + "]");
+    console.log("BUTTON TO ADD: [" + newbtn + "]");
 
-    // add new button to topiclist array
+
+    // add new button to topiclist array, ignoring whether or not it might be a duplicate
     if (newbtn.length > 0) {
       //only push to the topiclist array if the newbtn parameter is not empty
-      topiclist.push(newbtn);
+        topiclist.push(newbtn);
     }
+      //sort the topic list
+      topiclist.sort();
 
+// console.log("TOPIC ARRAY: " + topiclist);
     // Looping through the array of topics
     // console.log("there are " + topiclist.length + " buttons to add");
 
     for (var i = 0; i < topiclist.length; i++) {
+      // for (var i = topiclist.length; i >= 0; i--) {
 
     // Then dynamicaly generating buttons for each topic in the array
     // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
@@ -77,7 +51,9 @@ console.log("appending image");
     a.text(topiclist[i]);
     // Adding the button to the buttons-view div
     $("#buttons-view").append(a);
-        }
+    // $("#buttons-view").prepend(a);
+
+  }
 
     //write topiclist array into local storage, if needed
     if (newbtn.length > 0) {
@@ -219,6 +195,7 @@ $(document).ready(function()  {
 
   console.log("inside document ready function");
 
+
     //see if there are any topics to load from local storage
     var keycount = window.localStorage.length;
 
@@ -242,10 +219,13 @@ $(document).ready(function()  {
         event.preventDefault();
         // This line grabs the input from the textbox
         var topic = $("#gif-input").val().trim();
+        //now make the textbox empty after getting the value from it
+        $("#gif-input").val("");
+
         newTopic = topic.toLowerCase();
 
-        // console.log("ADD TOPIC BUTTON CLICKED");
-        // console.log("NEW TOPIC IS: [" + newTopic + "]");
+        console.log("ADD TOPIC BUTTON CLICKED");
+        console.log("NEW TOPIC IS: [" + newTopic + "]");
 
         // Calling renderButtons which handles the processing of our topiclist array
         renderButtons(newTopic);
@@ -304,6 +284,11 @@ $(document).ready(function()  {
           for (i=0; i < response.data.length; i++) {
             //iterate through response data and get gif info
           // console.log("GIF NUMBER: " + i)
+            var gifid = response.data[i].id;
+            var gifStillurl = response.data[i].images.original_still.url;
+console.log("ORIGINAL STILL URL: " + response.data[i].images.original_still.url);            
+            var gifAnimurl = response.data[i].images.original.url;
+console.log("ORIGINAL ANIM URL" + response.data[i].images.original.url)            ;
             var giftitle = response.data[i].title;
             var gifrating = response.data[i].rating
             var username = response.data[i].username;
@@ -321,11 +306,17 @@ $(document).ready(function()  {
 
             //create a new div to hold the gif image:
             console.log("make new div to hold gif info and image");
-            var rslt_div = $("<div>")
+            var rslt_div = $("<div>");
+            rslt_div.attr("id", gifid);    //set result div id to be the gif id
             rslt_div.addClass("gifresult");
             
 
             //now make a p tag with the gif title
+
+            //if the title is blank, show "not provided"
+            if (giftitle === "") {
+              giftitle = "not provided"
+            }
             var Ptitle = $("<p>").text("title: " + giftitle);
             Ptitle.addClass("gifinfo");
             
@@ -349,31 +340,28 @@ $(document).ready(function()  {
             console.log("adding Pusername to rslt_div")
            rslt_div.append(Pusername);
 
+
             //finally make the img tag for the gif
           console.log("making the image tag for the gif");
-            // console.log("adding image: " + i);
+console.log("STILL url: [" + gifStillurl) + "]";
+console.log("ANIM url: [" + gifAnimurl + "]");
+                      // console.log("adding image: " + i);
             var rsltimg = $("<img>");
             rsltimg.addClass("gif-result");
-            rsltimg.attr("src", response.data[i].images.fixed_height.url);
+            rsltimg.attr("id", gifid);
+            rsltimg.attr("src", gifStillurl);
             rsltimg.attr("alt", searchFor + " image");
+            rsltimg.attr("data-state", "still");
+            rsltimg.attr("data-url-still", gifStillurl);
+            rsltimg.attr("data-url-anim",gifAnimurl);
             
-            
-
-
-
-          //   console.log("RESULT IMAGE URL: " + response.data[i].images.fixed_height.url);
-
             //now, append the gif into the rslt div
             console.log("adding rslt_img to rslt_div");
             rslt_div.append(rsltimg);
 
-
-         
             //finally prepend the entire result div into the main results div
             console.log("adding img to results div");
             $("#imgresults").prepend(rslt_div);
-         
-
 
           }  //end of for loop for all results
 
@@ -408,10 +396,10 @@ $("#clearresults").on("click", function( ) {
 //*********************************************************************************
 // RESULT IMAGE DOUBLECLICK
 //*********************************************************************************
-$(document).on("click", ".gifresult",  function(event) {
+$(document).on("dblclick", ".gifresult",  function(event) {
   // $(".gifresult").on("click", function () {
 
-    console.log("RESULT IMAGE DOUBLE-CLICKED");
+    console.log("RESULT div DOUBLE-CLICKED");
 
     var gifdiv = this
 
