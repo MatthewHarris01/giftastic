@@ -290,17 +290,19 @@ $(document).ready(function()  {
           
           // console.log(response);
 
-          // console.log("iterating response data below");
-          // console.log("THERE ARE: " + response.data.length + " IMAGES IN THE RESULTS");
           var imglist = [];
           for (i=0; i < response.data.length; i++) {
             //iterate through response data and get gif info
-          // console.log("GIF NUMBER: " + i)
+
+            //create a new div to hold the gif image:
+            var rslt_div = $("<div>");
+            rslt_div.attr("id", gifid);    //set result div id to be the gif id
+            rslt_div.addClass("gifresult");
+
+            //ASSEMBLE THE GIF IMAGE WITH DATA FOR STILL AND ANIMATED URLS
             var gifid = response.data[i].id;
             var gifStillurl = response.data[i].images.original_still.url;
-// console.log("ORIGINAL STILL URL: " + response.data[i].images.original_still.url);            
             var gifAnimurl = response.data[i].images.original.url;
-// console.log("ORIGINAL ANIM URL" + response.data[i].images.original.url)            ;
             var giftitle = response.data[i].title;
             var gifrating = response.data[i].rating
             var username = response.data[i].username;
@@ -309,20 +311,27 @@ $(document).ready(function()  {
               username = "not provided"
             }
 
+            //make the img tag for the gif
+            var rsltimg = $("<img>");
+            rsltimg.addClass("gif-result");
+            rsltimg.attr("id", gifid);
+            rsltimg.attr("src", gifStillurl);
+            rsltimg.attr("alt", searchFor + " image");
+            rsltimg.attr("data-state", "still");
+            rsltimg.attr("data-url-still", gifStillurl);
+            rsltimg.attr("data-url-anim",gifAnimurl);
+            
+            //now, append the gif into the rslt div
+            rslt_div.append(rsltimg);
 
-          // console.log("gif title: " + response.data[i].title);
-          // console.log("gif rating: " + response.data[i].rating);
-          // console.log("gif username: [" + response.data[i].username + "]");
 
-            //create a new div to hold the gif image:
-            // console.log("make new div to hold gif info and image");
-            var rslt_div = $("<div>");
-            rslt_div.attr("id", gifid);    //set result div id to be the gif id
-            rslt_div.addClass("gifresult");
+            // //create a new div to hold the gif image:
+            // var rslt_div = $("<div>");
+            // rslt_div.attr("id", gifid);    //set result div id to be the gif id
+            // rslt_div.addClass("gifresult");
             
 
             //now make a p tag with the gif title
-
             //if the title is blank, show "not provided"
             if (giftitle === "") {
               giftitle = "not provided"
@@ -347,27 +356,22 @@ $(document).ready(function()  {
             Pusername.addClass("gifinfo");
 
             //append the username info
-            // console.log("adding Pusername to rslt_div")
            rslt_div.append(Pusername);
 
 
-            //finally make the img tag for the gif
-          // console.log("making the image tag for the gif");
-// console.log("STILL url: [" + gifStillurl) + "]";
-// console.log("ANIM url: [" + gifAnimurl + "]");
-                      // console.log("adding image: " + i);
-            var rsltimg = $("<img>");
-            rsltimg.addClass("gif-result");
-            rsltimg.attr("id", gifid);
-            rsltimg.attr("src", gifStillurl);
-            rsltimg.attr("alt", searchFor + " image");
-            rsltimg.attr("data-state", "still");
-            rsltimg.attr("data-url-still", gifStillurl);
-            rsltimg.attr("data-url-anim",gifAnimurl);
+            // //finally make the img tag for the gif
+            // var rsltimg = $("<img>");
+            // rsltimg.addClass("gif-result");
+            // rsltimg.attr("id", gifid);
+            // rsltimg.attr("src", gifStillurl);
+            // rsltimg.attr("alt", searchFor + " image");
+            // rsltimg.attr("data-state", "still");
+            // rsltimg.attr("data-url-still", gifStillurl);
+            // rsltimg.attr("data-url-anim",gifAnimurl);
             
-            //now, append the gif into the rslt div
-            // console.log("adding rslt_img to rslt_div");
-            rslt_div.append(rsltimg);
+            // //now, append the gif into the rslt div
+            // // console.log("adding rslt_img to rslt_div");
+            // rslt_div.append(rsltimg);
 
             //finally prepend the entire result div into the main results div
             // console.log("adding img to results div");
@@ -385,17 +389,17 @@ $(document).ready(function()  {
 ) //end of search button click parameter list
 
 //*********************************************************************************
-// RIGHT-CLICK TOPIC SEARCH BUTTON
+// RIGHT-CLICK TOPIC SEARCH BUTTON -- NOT TO BE IMPLEMENTED
 //*********************************************************************************
-$(document).on("contextmenu", "#buttons-view",  function(event) {
-  //this function handles the reight-click event for topic search buttons
+// $(document).on("contextmenu", "#buttons-view",  function(event) {
+//   //this function handles the reight-click event for topic search buttons
 
 
-  console.log("RIGHT-CLICK EVENT ON TOPIC BUTTON");
-  // $('#fBox' + folderID).on("contextmenu", function(event) {
+//   console.log("RIGHT-CLICK EVENT ON TOPIC BUTTON");
+//   // $('#fBox' + folderID).on("contextmenu", function(event) {
 
-} //end of mousedown event listener function
-) //end of mousedown event listener
+// } //end of mousedown event listener function
+// ) //end of mousedown event listener
 
 
 
@@ -444,7 +448,7 @@ $(document).on("dblclick", ".gifresult",  function(event) {
 $(document).on("click", ".gif-result",  function(event) {
   // $(".gifresult").on("click", function () {
 
-    console.log("RESULT img CLICKED --TURN ANIMATION ON/OFF");
+    // console.log("RESULT img CLICKED --TURN ANIMATION ON/OFF");
 
     var gifimg = $(this);
 

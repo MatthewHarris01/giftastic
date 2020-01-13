@@ -28,11 +28,10 @@
     <br>
     <br>
     <p class="directions">Click a button below to search for GIFs related to the topic on the button.</p>
-    <p class="directions">(Right-click a topic button to remove it.)</p>
 
      <!-- Rendered Buttons will get Dumped Here  -->
     <div id="buttons-view" style="border:2px solid blue;">
-      <p class="directions">right-click a button to delete it from this list</p>
+      
     </div> <!--end of buttons div-->
 
     <form id="gif-form">
@@ -54,8 +53,8 @@
       <br>
       <label for="limit" style="font-weight:bold;color:orangered;">Select number of GIFs returned by the search:</label>
       <select id="limit">
-        <option value="5">5</option>
         <option value="10">10</option>
+        <option value="5">5</option>
         <option value="15">15</option>
         <option value="20">20</option>
       </select>
@@ -64,7 +63,6 @@
 
     <!-- div to hold search results-->
     <h3 >Search results</h3>
-    <p class="directions">(Double-click a GIF to add it to your favorites.)</p>
     <p class="directions">(Click a GIF to start or stop animation.)</p>
     <button id="clearresults" style="background-color: coral;margin-bottom:10px;">Clear Search results</button>
   <div id="imgresults" style="width:100%;border:2px solid blue;padding:5px;">
@@ -72,10 +70,10 @@
   </div>
 
   <!-- div to hold Favorites -->
-  <h3>Favorite GIFS</h3>
+  <!-- <h3>Favorite GIFS</h3>
   <p class="directions">(Double-click a GIF to remove it from favorites.)</p>
   <div id="faves" style="width:100%;border:2px solid green;">
-  </div>
+  </div> -->
 
   <!--audio resources-->
     <audio id="myAudio">
